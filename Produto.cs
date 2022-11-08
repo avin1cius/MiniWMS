@@ -1,59 +1,27 @@
-public class Produto
+internal class Produto
 {
+    internal Guid UUID;
+    internal string Tipo;
     internal string Marca;
     internal string PesoKg;
-    internal string CustoReais;
     internal string DimensaoCxLxA;
+    internal string CustoReais{ get; }
+    internal string DetalhesAdicionais;
     
-    public Produto(string marca, string pesoKg, string custoReais, string dimensaoCxLxA)
+    internal Produto(){}
+    internal Produto(string uuid, string tipo, string marca, string pesoKg, string dimensaoCxLxA, string custoReais, string detalhesAdicionais)
     {
+        UUID = new Guid (uuid);
+        Tipo = tipo;
         Marca = marca;
         PesoKg = pesoKg;
+        DimensaoCxLxA = dimensaoCxLxA;        
         CustoReais = custoReais;
-        DimensaoCxLxA = dimensaoCxLxA;
+        DetalhesAdicionais = detalhesAdicionais;
     }
 
-    public string[] GetEspecificacoes()
+    internal string[] GetEspecificacoes()
     {
-        return new string[] {Marca, PesoKg, CustoReais, DimensaoCxLxA};
+        return new string[] {Tipo, Marca, PesoKg, DimensaoCxLxA, CustoReais};
     }
-}
-
-public class Televisao : Produto
-{
-    string Polegadas;
-    string Resolucao;
-
-    public Televisao(Produto produto, string polegadas, string resolucao)
-    {
-        Produto();
-        Marca = produto.Marca;
-        PesoKg = produto.PesoKg;
-        CustoReais = produto.CustoReais;
-        DimensaoCxLxA = produto.DimensaoCxLxA;
-        Polegadas = polegadas;
-        Resolucao = resolucao;
-
-
-    }
-
-}
-
-public class Smartphone : Produto
-{
-    string Polegadas;
-    string Resolucao;
-    string MemoriaGB;
-    string ArmazenamentoGB;
-
-    public Smartphone(Produto produto, string polegadas, string resolucao)
-    {
-        Marca = produto.Marca;
-
-    }
-}
-
-public class Laptop : Produto
-{
-
 }

@@ -1,0 +1,29 @@
+internal class Armazem
+{
+    internal string Localizacao;
+    internal string AreaM2;
+
+    internal List<(Produto produto, int quantidade)> ProdutosEmEstoque = new List<(Produto, int)>();
+
+    internal Armazem(string localizacao, string areaM2, List<Produto> listaProduto)
+    {
+        Localizacao = localizacao;
+        AreaM2 = areaM2;
+        foreach (var produto in listaProduto)
+        {
+            ProdutosEmEstoque.Add((produto, 0));
+        }
+    }
+
+    internal int GetEstoqueDeProduto(Guid UUID)
+    {
+        return ProdutosEmEstoque.Find(x => x.produto.UUID == UUID).quantidade;
+    }
+
+    internal void AdicionarEstoqueProduto(Guid UUID, int quantidade)
+    {
+        int _indice = ProdutosEmEstoque.FindIndex(x => x.produto.UUID == UUID);
+        ProdutosEmEstoque[_indice].quantidade += quantidade;
+    }
+
+}
